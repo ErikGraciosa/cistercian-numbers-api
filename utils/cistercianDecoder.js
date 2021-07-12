@@ -85,38 +85,63 @@ export const cistercianDecoder = (number) => {
     9: vertAxisFlip(ones[digitTwo])
   };
 
-  //horizontal axis flip
-  const horAxisFlip = (tuple) => {
-    const horizontalFlip = tuple.reverse();
-    return horizontalFlip;
-  };
-
   //flip along horizontal axis
-  const hundreds = {
-    0: horAxisFlip(ones[digitThree]),
-    1: horAxisFlip(ones[digitThree]),
-    2: horAxisFlip(ones[digitThree]),
-    3: horAxisFlip(ones[digitThree]),
-    4: horAxisFlip(ones[digitThree]),
-    5: horAxisFlip(ones[digitThree]),
-    6: horAxisFlip(ones[digitThree]),
-    7: horAxisFlip(ones[digitThree]),
-    8: horAxisFlip(ones[digitThree]),
-    9: horAxisFlip(ones[digitThree])
+  const upperScore = ' &#x305';
+  const hundreds = {    
+    0: [
+      ['&nbsp', '&nbsp'],
+      ['&nbsp', '&nbsp']
+    ],
+    1: [
+      ['&nbsp', '&nbsp'],
+      [upperScore, '&nbsp']
+    ],
+    2: [
+      [upperScore, '&nbsp'],
+      ['&nbsp', '&nbsp']
+    ],
+    3: [
+      ['/', '&nbsp'],
+      ['&nbsp', '&nbsp']
+    ],
+    4: [
+      ['\\', '&nbsp'],
+      ['&nbsp', '&nbsp']
+    ],
+    5: [
+      ['\\', '&nbsp'],
+      [upperScore, '&nbsp']
+    ],
+    6: [
+      ['&nbsp', '|'],
+      ['&nbsp', '&nbsp']
+    ],
+    7: [
+      ['&nbsp', '|'],
+      [upperScore, '&nbsp']
+    ],
+    8: [
+      [upperScore, '|'],
+      ['&nbsp', '&nbsp']
+    ],
+    9: [
+      [upperScore, '|'],
+      [upperScore, '&nbsp']
+    ],
   };
 
   //flip on horizontal and vertical axis replace slashes
   const thousands = {
-    0: '',
-    1: '',
-    2: '',
-    3: '',
-    4: '',
-    5: '',
-    6: '',
-    7: '',
-    8: '',
-    9: ''
+    0: vertAxisFlip(hundreds[digitFour]),
+    1: vertAxisFlip(hundreds[digitFour]),
+    2: vertAxisFlip(hundreds[digitFour]),
+    3: vertAxisFlip(hundreds[digitFour]),
+    4: vertAxisFlip(hundreds[digitFour]),
+    5: vertAxisFlip(hundreds[digitFour]),
+    6: vertAxisFlip(hundreds[digitFour]),
+    7: vertAxisFlip(hundreds[digitFour]),
+    8: vertAxisFlip(hundreds[digitFour]),
+    9: vertAxisFlip(hundreds[digitFour])
   };
 
   const upperSymbol = [
@@ -144,8 +169,18 @@ export const cistercianDecoder = (number) => {
   }
 
   //splice the hundreds place
+  for(let i = 0; i < lowerSymbol.length; i++){
+    for(let j = 3; j < lowerSymbol[i].length; j++){
+      lowerSymbol[i].splice(j, 1, hundreds[digitThree][i][j - 3]);
+    }
+  }
 
-
+  //splice the thousands place
+  for(let i = 0; i < lowerSymbol.length; i++){
+    for(let j = 0; j < 2; j++){
+      lowerSymbol[i].splice(j, 1, thousands[digitFour][i][j]);
+    }
+  }
 
   //create string for ones/tens
   const upperJoinedLines = upperSymbol.map(line => line.join(''));
