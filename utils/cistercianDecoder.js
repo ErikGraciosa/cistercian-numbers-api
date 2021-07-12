@@ -1,5 +1,4 @@
 export const cistercianDecoder = (number) => {
-  console.log(number);
   if(number > 9999 || number < 1){
     return 'Sorry number out of range, select a number between 1-9999';
   }
@@ -8,9 +7,8 @@ export const cistercianDecoder = (number) => {
     number = '0' + number;
   }
 
+  //destructure each digit
   const [digitFour, digitThree, digitTwo, digitOne] = number.split('');
-
-  console.log(digitOne, digitThree);
   
   const ones = {
     0: [
@@ -68,7 +66,6 @@ export const cistercianDecoder = (number) => {
     }));
 
     const vertFlip = changeSlashes.map(line => line.reverse());
-    console.log(vertFlip);
     return vertFlip;
   };
 
@@ -85,7 +82,7 @@ export const cistercianDecoder = (number) => {
     9: vertAxisFlip(ones[digitTwo])
   };
 
-  //flip along horizontal axis
+  //hash table for lower section because using upperscore
   const upperScore = ' &#x305';
   const hundreds = {    
     0: [
@@ -186,7 +183,6 @@ export const cistercianDecoder = (number) => {
   const upperJoinedLines = upperSymbol.map(line => line.join(''));
   upperJoinedLines.splice(1, 0, '<br>');
   const fullJoinUpper = upperJoinedLines.join('');
-  console.log(upperJoinedLines, fullJoinUpper);
 
   //create string for hunds/thous
   const lowerJoinedLines = lowerSymbol.map(line => line.join(''));
