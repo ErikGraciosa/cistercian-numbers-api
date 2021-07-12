@@ -5,7 +5,7 @@ export const cistercianDecoder = (number) => {
   }
 
   const ones = {
-    1: '   _ \n  |  \n  |  \n  |  \n     ',
+    1: '_____\n|   _ |\n|  |  |\n|  |  |\n|  |  |\n|     |',
     2: '  |  \n  |  \n  |  ',
     3: '  |  \n  |  \n  |  ',
     4: '  |  \n  |  \n  |  ',
